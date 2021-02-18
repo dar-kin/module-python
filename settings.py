@@ -1,5 +1,6 @@
 PLAYER_LIVES = 3
 SCORES_FILE = "scores.json"
+COMMANDS = ("exit", "help", "show_scores")
 
 
 def game_help():

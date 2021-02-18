@@ -59,3 +59,7 @@ def check_commands(n):
         settings.game_help()
     elif n == "show_scores":
         top_ten()
+
+
+def if_command(n):
+    return n in settings.COMMANDS

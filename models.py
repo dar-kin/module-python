@@ -2,8 +2,7 @@ from enum import Enum
 from random import choice
 import settings
 from exception import EnemyDown, ExitGame, GameOver
-from misc import top_ten, check_commands
-
+from misc import check_commands, if_command
 
 class Attacks(Enum):
     MAGE = "mage"
@@ -72,13 +71,21 @@ class Enemy(Alive, MoveMixin):
 
 def player_choice():
     n = ""
-    while n not in (1, 2, 3):
+    while True:
         n = input()
-        check_commands(n)
-        try:
-            n = int(n)
-        except ValueError:
-            continue
+        if check_commands(n):
+            check_commands(n)
+        else:
+            try:
+                n = int(n)
+            except ValueError:
+                print("Invalid input")
+            else:
+                if n not in (1, 2, 3):
+                    print("Invalid number")
+                    continue
+                else:
+                    break
     if n == 1:
         return Attacks.MAGE.value
     elif n == 2:

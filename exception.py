@@ -10,3 +10,4 @@ class EnemyDown(Exception):
 
 class ExitGame(Exception):
     pass
+
