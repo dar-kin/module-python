@@ -39,14 +39,14 @@ def play():
 if __name__ == "__main__":
     try:
         play()
-    except exception.ExitGame as e:
+    except exception.ExitGame as error:
         print("Game was stopped manually. Score is not recorded.")
-        logging.exception(e)
-    except KeyboardInterrupt as e:
-        logging.exception(e)
-    except exception.GameOver as e:
+        logging.exception(error)
+    except KeyboardInterrupt as error:
+        logging.exception(error)
+    except exception.GameOver as error:
         print("Your game is over. Your score has been recorded.")
-        save_score(e.player_name, e.score)
-        logging.exception(e)
+        save_score(error.player_name, error.score)
+        logging.exception(error)
     finally:
         print("Goodbye!")

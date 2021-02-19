@@ -4,6 +4,7 @@ import settings
 from exception import EnemyDown, ExitGame, GameOver
 from misc import check_commands, if_command
 
+
 class Attacks(Enum):
     MAGE = "mage"
     WARRIOR = "warrior"
@@ -40,7 +41,7 @@ class Alive(object):
         return self.lives > 0
 
 
-class MoveMixin(object):
+class MoveMixin:
     @staticmethod
     def attack(**kwargs):
         raise NotImplementedError
@@ -70,27 +71,27 @@ class Enemy(Alive, MoveMixin):
 
 
 def player_choice():
-    n = ""
+    user_input = ""
     while True:
-        n = input()
-        if if_command(n):
-            check_commands(n)
+        user_input = input()
+        if if_command(user_input):
+            check_commands(user_input)
         else:
             try:
-                n = int(n)
+                user_input = int(user_input)
             except ValueError:
                 print("Invalid input")
             else:
-                if n not in (1, 2, 3):
+                if user_input not in (1, 2, 3):
                     print("Invalid number")
                     continue
                 else:
                     break
-    if n == 1:
+    if user_input == 1:
         return Attacks.MAGE.value
-    elif n == 2:
+    elif user_input == 2:
         return Attacks.WARRIOR.value
-    elif n == 3:
+    elif user_input == 3:
         return Attacks.ROGUE.value
 
 
@@ -110,8 +111,8 @@ class Player(Alive, MoveMixin):
     def attack(self, enemy_object):
         try:
             player_move = player_choice()
-        except ExitGame as e:
-            raise e
+        except ExitGame as error:
+            raise error
         enemy_move = enemy_object.defence()
         result = Attacks.make_decision(player_move, enemy_move)
         print(f"Your choice {player_move}")
@@ -127,8 +128,8 @@ class Player(Alive, MoveMixin):
     def defence(self, enemy_object):
         try:
             player_move = player_choice()
-        except ExitGame as e:
-            raise e
+        except ExitGame as error:
+            raise error
         enemy_move = enemy_object.defence()
         result = Attacks.make_decision(player_move, enemy_move)
         print(f"Your choice {player_move}")
