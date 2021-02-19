@@ -1,3 +1,7 @@
+"""
+Module, which contains misc functions, like checking string for command
+"""
+
 import json
 import exception
 import settings
@@ -7,6 +11,10 @@ SCORES_FILE = settings.SCORES_FILE
 
 
 def check_for_file():
+    """
+    Function, which checks, whether 'scores.json' exists
+    :return: None
+    """
     try:
         with open(SCORES_FILE, "r+") as file:
             char = file.read(1)
@@ -18,6 +26,10 @@ def check_for_file():
 
 
 def top_ten():
+    """
+    Function, for showing top ten scores
+    :return: None
+    """
     check_for_file()
     with open(SCORES_FILE, "r") as file:
         scores = json.load(file)
@@ -30,6 +42,7 @@ def top_ten():
 
 
 def save_score(player_name, score):
+    """Function, for saving score in top ten"""
     check_for_file()
     with open(SCORES_FILE, "r") as file:
         scores = json.load(file)
@@ -53,6 +66,11 @@ def save_score(player_name, score):
 
 
 def check_commands(user_input):
+    """
+    Function, for checking string for a command
+    :param user_input: string
+    :return: None
+    """
     if user_input == "exit":
         raise exception.ExitGame("Exit game")
     elif user_input == "help":
@@ -62,4 +80,9 @@ def check_commands(user_input):
 
 
 def if_command(suer_input):
+    """
+    Function, which checks, whether string is in commands
+    :param suer_input: string
+    :return: bool
+    """
     return suer_input in settings.COMMANDS

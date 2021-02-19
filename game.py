@@ -1,3 +1,8 @@
+"""
+Module, which contains function for running the game
+"""
+
+
 import logging
 import models
 import exception
@@ -8,6 +13,10 @@ logging.basicConfig(filename="logs.txt")
 
 
 def play():
+    """
+    Function, which runs the game
+    :return: None
+    """
     player_name = ""
     while len(player_name) < 5 or player_name in ("help", "show_scores"):
         player_name = input("Input your name. It must be at least 5 characters "
