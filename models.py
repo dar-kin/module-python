@@ -73,7 +73,7 @@ def player_choice():
     n = ""
     while True:
         n = input()
-        if check_commands(n):
+        if if_command(n):
             check_commands(n)
         else:
             try:
