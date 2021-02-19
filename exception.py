@@ -1,3 +1,8 @@
+"""
+Module, containing exceptions
+"""
+
+
 class GameOver(Exception):
     def __init__(self, player_name, score):
         self.player_name = player_name
